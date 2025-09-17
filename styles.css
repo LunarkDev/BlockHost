@@ -1,0 +1,144 @@
+:root{
+  --bg:#07060a;
+  --panel:#0f0e12;
+  --muted:#9aa0ab;
+  --accent-start:#3a2b6f; /* deep purple, subtle */
+  --accent-end:#0f0e12;
+  --glass: rgba(255,255,255,0.03);
+  --primary:#7b5cff;
+  --radius:10px;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial;
+}
+
+/* ...existing styles... */
+html,body{height:100%}
+body{
+  margin:0;
+  background: transparent;
+  position: relative;
+  z-index: 0;
+  color:#e6e9ee;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
+/* add background pseudo-layer */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(180deg,var(--accent-start), var(--accent-end));
+  pointer-events:none;
+  will-change:transform;
+}
+
+/* ensure header and main sit above the background and are properly centered */
+.site-header, main, .plans, .site-footer{
+  position:relative;
+  z-index:1;
+}
+
+/* Header */
+.site-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 36px;
+  backdrop-filter: blur(6px);
+  background: transparent; /* changed to let body gradient show through */
+}
+.brand{display:flex;gap:14px;align-items:center}
+.logo{width:56px;height:56px;border-radius:4px;object-fit:cover;background:transparent;border:1px solid rgba(255,255,255,0.06);padding:4px}
+.brand h1{margin:0;font-size:18px;letter-spacing:0.4px}
+.tag{margin:0;font-size:12px;color:var(--muted)}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  padding:10px 14px;
+  border-radius:8px;
+  font-weight:600;
+  color:var(--bg);
+  background:linear-gradient(90deg,var(--primary), #5f4bff);
+  border:none;
+  cursor:pointer;
+  text-decoration:none;
+  transition:transform .14s ease, box-shadow .14s ease;
+  box-shadow:0 6px 18px rgba(27,20,80,0.28);
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(27,20,80,0.36)}
+.btn.ghost{background:transparent;color:var(--muted);box-shadow:none;border:1px solid rgba(123,92,255,0.05)}
+.btn.outline{background:transparent;color:var(--primary);border:1px solid rgba(123,92,255,0.18);backdrop-filter:blur(4px)}
+.btn.small{padding:8px 10px;font-size:13px;border-radius:8px}
+
+/* Hero */
+.hero{
+  display:flex;
+  gap:40px;
+  align-items:center;
+  justify-content:space-between;
+  padding:48px 64px;
+  flex:1;
+}
+.hero-inner{max-width:640px}
+.hero h2{font-size:42px;margin:0 0 12px 0;line-height:1.02}
+.lead{color:var(--muted);margin:0 0 20px 0}
+.cta-row{display:flex;gap:12px;margin-bottom:18px}
+.features{display:flex;gap:12px;list-style:none;padding:0;margin:12px 0 0 0;color:var(--muted);font-size:13px}
+
+/* Visual area */
+.visual{width:480px;display:flex;flex-direction:column;gap:18px;align-items:center}
+#canvas-wrap{width:100%;height:220px;border-radius:14px;overflow:hidden;background:transparent;box-shadow:0 10px 30px rgba(3,2,7,0.18)} /* make canvas container transparent and soften shadow */
+.mockup{width:100%;background:linear-gradient(180deg, rgba(15,14,18,0.12), rgba(123,92,255,0.02));border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(0,0,0,0.28)} /* use translucent panel so body gradient is visible */
+.mock-header{font-weight:700;color:var(--muted);font-size:13px;margin-bottom:8px}
+.mock-body{display:flex;justify-content:space-between;align-items:center}
+.chip{background:var(--glass);padding:8px 10px;border-radius:8px;color:var(--muted);font-size:13px;display:inline-block;margin-bottom:6px}
+
+/* Plans */
+.plans{padding:40px 64px;background:linear-gradient(180deg, rgba(123,92,255,0.02), transparent)}
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:18px}
+.card{background:linear-gradient(180deg, rgba(15,14,18,0.08), rgba(123,92,255,0.02));padding:18px;border-radius:12px;border:1px solid rgba(123,92,255,0.03)} /* make plan cards translucent */
+.price{font-weight:700;margin:8px 0 12px 0}
+.popular{outline:2px solid rgba(123,92,255,0.12);transform:translateY(-6px)}
+.ribbon{background:linear-gradient(90deg,var(--primary),#5f4bff);display:inline-block;padding:4px 8px;border-radius:8px;color:var(--bg);font-weight:700;font-size:12px;margin-bottom:8px}
+
+/* Footer */
+.site-footer{padding:20px 64px;color:var(--muted);font-size:13px;border-top:1px solid rgba(123,92,255,0.02)}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero{flex-direction:column;padding:28px;align-items:center;text-align:center}
+  .hero-inner{max-width:100%;width:100%}
+  .visual{width:100%;order:2}
+  .site-header{padding:14px 20px}
+  .plans{padding:28px 20px}
+}
+
+/* Mobile-specific fixes */
+@media (hover: none), (pointer: coarse) {
+  /* Disable hover lift on touch devices to avoid accidental shifts */
+  .btn:hover{transform:none;box-shadow:0 6px 18px rgba(27,20,80,0.28)}
+}
+
+/* Header stacks on very small screens */
+@media (max-width:560px){
+  .site-header{flex-direction:column;align-items:center;gap:8px;padding:14px;text-align:center}
+  .nav{width:100%;display:flex;gap:8px;justify-content:center}
+  .brand{width:auto;justify-content:center;align-items:center}
+  .hero{padding:20px 16px;gap:18px;align-items:center;text-align:center}
+  .hero h2{font-size:26px;margin:0 auto}
+  #canvas-wrap{height:160px;border-radius:12px}
+  .mockup{padding:10px}
+  .visual{width:100%}
+  .plan-grid{grid-template-columns:1fr;gap:12px}
+  .popular{transform:none;outline:2px solid rgba(123,92,255,0.10)}
+}
+
+/* Ensure canvas container resizes smoothly */
+#canvas-wrap{min-height:120px;display:block}
