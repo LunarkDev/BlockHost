@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BlockHost — Hosting Minecraft</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://esm.sh/three@0.158.0"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <img src="/logo.png" alt="Secure Cube — BlockHost logo" class="logo">
+      <div>
+        <h1>BlockHost</h1>
+        <p class="tag">Hosting profesional para servidores Minecraft</p>
+      </div>
+    </div>
+    <nav class="nav">
+      <a class="btn ghost" href="#planes">Planes</a>
+      <a class="btn" href="#panel">Panel</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div class="hero-inner">
+      <h2>Potencia. Simplicidad. Latencia baja.</h2>
+      <p class="lead">Despliega tu servidor de Minecraft en segundos con panel intuitivo, backups y protección DDoS incluida.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#comenzar">Comenzar</a>
+        <a class="btn outline" href="#precios">Ver planes</a>
+      </div>
+      <ul class="features">
+        <li>Instalación en 30s</li>
+        <li>Backups automáticos</li>
+        <li>Ubicaciones globales</li>
+      </ul>
+    </div>
+
+    <div class="visual">
+      <div id="canvas-wrap" aria-hidden="true"></div>
+    </div>
+  </main>
+
+  <section id="planes" class="plans">
+    <h3>Nuestros planes</h3>
+    <div class="plan-grid">
+      <div class="plan card">
+        <h4>Starter</h4>
+        <p class="price">€3.99 / mes</p>
+        <ul>
+          <li>2 Cores • 4 GB RAM</li>
+          <li>50 slots</li>
+          <li>Backups 7d</li>
+        </ul>
+        <a class="btn primary" href="#comenzar">Elegir</a>
+      </div>
+      <div class="plan card popular">
+        <div class="ribbon">Popular</div>
+        <h4>Pro</h4>
+        <p class="price">€9.99 / mes</p>
+        <ul>
+          <li>4 Cores • 8 GB RAM</li>
+          <li>200 slots</li>
+          <li>Backups 14d</li>
+        </ul>
+        <a class="btn primary" href="#comenzar">Elegir</a>
+      </div>
+      <div class="plan card">
+        <h4>Enterprise</h4>
+        <p class="price">€24.99 / mes</p>
+        <ul>
+          <li>8 Cores • 16 GB RAM</li>
+          <li>Ilimitado</li>
+          <li>Backups 30d</li>
+        </ul>
+        <a class="btn primary" href="#comenzar">Elegir</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> BlockHost — Hecho para servidores Minecraft</p>
+  </footer>
+
+  <script src="script.js" type="module"></script>
+</body>
+</html>
